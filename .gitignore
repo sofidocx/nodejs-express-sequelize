@@ -1,4 +1,13 @@
+# Node
 node_modules
-.env 
-*.sqlite
+.env
 *.log
+
+# Sequelize/SQLite
+database.sqlite
+*.sqlite
+src/config/config.json
+
+# Sistema
+.DS_Store
+desktop.ini
