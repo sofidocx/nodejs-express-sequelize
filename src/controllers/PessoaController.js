@@ -1,15 +1,12 @@
-//gerenciar e receber as respostas 
-class PessoaController {
+const Controller = require('./Controller.js');
+const PessoaServices = require('../services/PessoaServices.js');
 
-    static async pegaTodas (req, res) {
+const pessoaServices = new PessoaServices();
 
-        try {
-            //acessar o modelo 
-        } catch (erro) {
-            //algum tratamento de erro
-        }
-    }
-
+class PessoaController extends Controller {
+  constructor() {
+    super(pessoaServices);
+  }
 }
 
-module.exports = PessoaController; 
+module.exports = PessoaController;
