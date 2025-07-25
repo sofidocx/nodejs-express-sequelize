@@ -24,10 +24,10 @@ class Controller {
     }
   }
 
-    async pegaUm(req, res) {
-      //tudo o que vier no parametro da requisição, iremos espalhar o conteúdo deles na nossa const 
+  async pegaUm(req, res) {
+    //tudo o que vier no parametro da requisição, iremos espalhar o conteúdo deles na nossa const 
     const { ...params } = req.params;
-    const where = converteIds(params); 
+    const where = converteId(params);
     try {
       const umRegistro = await this.entidadeService.pegaUmRegistro(where);
       return res.status(200).json(umRegistro);
@@ -47,11 +47,13 @@ class Controller {
   }
 
   async atualiza(req, res) {
-    const { id } = req.params;
+    const { ...params } = req.params;
     const dadosAtualizados = req.body;
+
+    const where = converteId(params);
     try {
       //isUpdated
-      const foiAtualizado = await this.entidadeService.atualizaRegistro(dadosAtualizados, Number(id));
+      const foiAtualizado = await this.entidadeService.atualizaRegistro(dadosAtualizados, where);
       if (!foiAtualizado) {
         return res.status(400).json({ mensagem: 'registro não foi atualizado' });
       }
@@ -62,16 +64,16 @@ class Controller {
   }
 
   async exclui(req, res) {
-    const { id } = req.params;
-    try {
-      await this.entidadeService.excluiRegistro(Number(id));
-      return res.status(200).json({ mensagem: `id ${id} deletado` });
+      const { id } = req.params;
+      try {
+        await this.entidadeService.excluiRegistro(Number(id));
+        return res.status(200).json({ mensagem: `id ${id} deletado` });
 
 
-    } catch (erro) {
-      return res.status(500).json({ erro: erro.message });
+      } catch (erro) {
+        return res.status(500).json({ erro: erro.message });
+      }
     }
   }
-}
 
 module.exports = Controller;
