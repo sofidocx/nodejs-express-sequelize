@@ -32,6 +32,12 @@ module.exports = (sequelize, DataTypes) => {
       where: {
         ativo: true,
       }
+    }, 
+    scopes: {
+      todosOsRegistros: {
+        //o sequelize vai interpretar que não estamos nenhuma especificação no where, logo, ele ira considerar tudo 
+        where: {}
+      }
     }
   });
   return Pessoa;
