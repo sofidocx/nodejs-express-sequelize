@@ -1,6 +1,6 @@
 //Intermédio entre modelos, aplicar regras, e vai realizar a interface do controller, então iremos colocar uma camada entre models e controllers 
 
-const dataSource = require('../models');
+const dataSource = require('../database/models');
 
 class Services {
   constructor(nomeDoModel) {
