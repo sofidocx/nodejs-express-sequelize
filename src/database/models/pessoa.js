@@ -27,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Pessoa',
     tableName:'pessoas', 
     paranoid:true, 
+    defaultScope: {
+      //o escopo padrão é aplicado onde o valor da coluna true for igual a true, só aparece a listagem de alunos com true 
+      where: {
+        ativo: true,
+      }
+    }
   });
   return Pessoa;
 };
